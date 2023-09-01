@@ -11,8 +11,10 @@ export default function App() {
 	async function fetchUsers() {
 		try {
 			const users = await axios.get(
-				"https://randomuser.me/api/?results=10&nat=de",
-				{ signal: abort.signal }
+				"https://randomuser.me/api/?results=10",
+				{
+					signal: abort.signal,
+				}
 			);
 			if (users.status === 200) {
 				const usrData = users.data;
@@ -31,11 +33,11 @@ export default function App() {
 		fetchUsers();
 	}, []);
 
-  useEffect(() => {
-    return (
-      abort.abort()
-    )
-  },[])
+	useEffect(() => {
+		return () => {
+			abort.abort();
+		};
+	}, []);
 
 	return (
 		<div className="App">
