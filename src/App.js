@@ -44,7 +44,7 @@ export default function App() {
 			<Instructions />
 			<div className="block">
 				{user.length > 0
-					? user.map((user, id) => <User user={user} id={id} />)
+					? user.map((user, key) => <User user={user} key={key} />)
 					: "Loading..."}
 			</div>
 		</div>
